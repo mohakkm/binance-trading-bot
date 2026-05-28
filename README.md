@@ -1,7 +1,7 @@
-# Binance Futures Testnet Trading Bot
+# Binance Futures Trading Bot
 
-A lightweight Python CLI for placing **Market** and **Limit** orders on the
-[Binance Futures Testnet](https://testnet.binancefuture.com) (USDT-M).
+A lightweight Python CLI for placing **Market** and **Limit** orders on
+[Binance Demo Trading](https://demo.binance.com/futures) (USDⓈ-M Futures).
 
 ---
 
@@ -11,7 +11,7 @@ A lightweight Python CLI for placing **Market** and **Limit** orders on the
 trading_bot/
 ├── bot/
 │   ├── __init__.py
-│   ├── client.py          # Binance client wrapper (testnet connection + auth)
+│   ├── client.py          # Binance client wrapper (demo connection + auth)
 │   ├── orders.py          # Order placement logic (market + limit)
 │   ├── validators.py      # Input validation for all CLI arguments
 │   └── logging_config.py  # Rotating file logger + console logger setup
@@ -27,18 +27,20 @@ trading_bot/
 
 ## Setup
 
-### 1. Get Testnet API Keys
+### 1. Get Demo Trading API Keys
 
-1. Go to [https://testnet.binancefuture.com](https://testnet.binancefuture.com)
-2. Log in with your GitHub account
-3. Navigate to **API Key** section and generate a key pair
-4. Copy the **API Key** and **Secret Key**
+1. Go to [https://demo.binance.com/futures](https://demo.binance.com/futures)
+2. Log in with your Binance account (Google login works)
+3. Click your **Account icon** (top right) → **API Management**
+4. Click **Create API** → give it a name → copy the **API Key** and **Secret Key**
+
+> Note: Binance Demo Trading uses virtual funds only. No real money is involved.
 
 ### 2. Clone & Install
 
 ```bash
-git clone https://github.com/your-username/trading_bot.git
-cd trading_bot
+git clone https://github.com/your-username/binance-trading-bot.git
+cd binance-trading-bot
 
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
@@ -49,7 +51,7 @@ pip install -r requirements.txt
 ### 3. Configure Credentials
 
 ```bash
-cp .env.example .env
+cp .env.example .env            # Windows: copy .env.example .env
 ```
 
 Open `.env` and fill in your keys:
@@ -112,17 +114,17 @@ python cli.py --help
 ────────────────────────────────────────────────────
   ORDER RESPONSE
 ────────────────────────────────────────────────────
-  Order ID     : 3951823641
+  Order ID     : 13329991393
   Symbol       : BTCUSDT
   Side         : BUY
   Type         : MARKET
-  Status       : FILLED
-  Orig Qty     : 0.01
-  Executed Qty : 0.01
-  Avg Price    : 96432.50
+  Status       : NEW
+  Orig Qty     : 0.0100
+  Executed Qty : 0.0000
+  Avg Price    : N/A (order pending)
 ────────────────────────────────────────────────────
 
-  ✓ MARKET order placed successfully on Binance Futures Testnet.
+  ✓ MARKET order placed successfully on Binance Futures Demo.
 ```
 
 ---
@@ -138,11 +140,10 @@ All activity is logged to `logs/trading_bot.log`.
 Sample log entries:
 
 ```
-2025-01-15 14:23:01 | INFO     | bot.client | Connected to Binance Futures Testnet. Server time: 1736950981000 ms
-2025-01-15 14:23:01 | INFO     | bot.orders | Placing MARKET order | symbol=BTCUSDT side=BUY quantity=0.01
-2025-01-15 14:23:02 | DEBUG    | bot.orders | Request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
-2025-01-15 14:23:02 | DEBUG    | bot.orders | Raw response: {'orderId': 3951823641, 'symbol': 'BTCUSDT', ...}
-2025-01-15 14:23:02 | INFO     | bot.orders | MARKET order placed successfully | orderId=3951823641 status=FILLED executedQty=0.01 avgPrice=96432.50
+2026-05-28 22:31:07 | INFO     | __main__   | CLI invoked | symbol=BTCUSDT side=BUY type=MARKET quantity=0.01 price=None
+2026-05-28 22:31:08 | INFO     | bot.client | Connected to Binance Futures Testnet. Server time: 1779987668607 ms
+2026-05-28 22:31:08 | INFO     | bot.orders | Placing MARKET order | symbol=BTCUSDT side=BUY quantity=0.01
+2026-05-28 22:31:09 | INFO     | bot.orders | MARKET order placed successfully | orderId=13329991393 status=NEW executedQty=0.0000 avgPrice=N/A (order pending)
 ```
 
 ---
@@ -166,9 +167,11 @@ All errors exit with code `1`. Successful runs exit with code `0`.
 
 ## Assumptions
 
-- All orders are placed on **Binance Futures Testnet** (USDT-M). No live funds are used.
+- All orders are placed on **Binance Demo Trading** (USDⓈ-M Futures). No live funds are used.
+- The base API URL used is `https://demo-fapi.binance.com` as per Binance's official demo trading API documentation.
 - LIMIT orders use **GTC** (Good Till Cancelled) as the default `timeInForce`.
-- Quantity precision follows the symbol's rules on the testnet — if an order is rejected for precision, adjust your `--quantity` accordingly (e.g. use `0.001` instead of `0.0011111`).
+- Market orders on the demo environment may show `status: NEW` briefly before filling — this is expected behaviour of the demo environment, not a bug.
+- Quantity precision follows the symbol's rules — if an order is rejected for precision, adjust your `--quantity` accordingly (e.g. use `0.001` instead of `0.0011`).
 - API keys are loaded from a `.env` file in the project root, or from environment variables directly.
 
 ---
@@ -176,4 +179,4 @@ All errors exit with code `1`. Successful runs exit with code `0`.
 ## Requirements
 
 - Python 3.10+
-- Binance Futures Testnet account and API keys
+- Binance account (free) for Demo Trading access
