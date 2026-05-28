@@ -1,0 +1,29 @@
+2026-05-28 22:31:07 | INFO     | __main__ | CLI invoked | symbol=BTCUSDT side=BUY type=MARKET quantity=0.01 price=None
+2026-05-28 22:31:07 | DEBUG    | bot.validators | Starting full input validation.
+2026-05-28 22:31:07 | DEBUG    | bot.validators | Order type validated: MARKET
+2026-05-28 22:31:07 | DEBUG    | bot.validators | Symbol validated: BTCUSDT
+2026-05-28 22:31:07 | DEBUG    | bot.validators | Side validated: BUY
+2026-05-28 22:31:07 | DEBUG    | bot.validators | Quantity validated: 0.01
+2026-05-28 22:31:07 | DEBUG    | bot.validators | All inputs validated successfully: {'symbol': 'BTCUSDT', 'side': 'BUY', 'order_type': 'MARKET', 'quantity': 0.01, 'price': None}
+2026-05-28 22:31:07 | DEBUG    | bot.client | Initialising Binance Futures Testnet client.
+2026-05-28 22:31:08 | INFO     | bot.client | Connected to Binance Futures Testnet. Server time: 1779987668607 ms
+2026-05-28 22:31:08 | INFO     | bot.orders | Placing MARKET order | symbol=BTCUSDT side=BUY quantity=0.01
+2026-05-28 22:31:08 | DEBUG    | bot.orders | Request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-05-28 22:31:09 | DEBUG    | bot.orders | Raw response: {'orderId': 13329991393, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'F6d6JqYRwCXO7uzdFhtUnv', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1779987669057}
+2026-05-28 22:31:09 | INFO     | bot.orders | MARKET order placed successfully | orderId=13329991393 status=NEW executedQty=0.0000 avgPrice=N/A (order pending)
+2026-05-28 22:31:09 | INFO     | __main__ | Session completed successfully.
+2026-05-28 22:32:16 | INFO     | __main__ | CLI invoked | symbol=BTCUSDT side=SELL type=LIMIT quantity=0.01 price=80000
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Starting full input validation.
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Order type validated: LIMIT
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Symbol validated: BTCUSDT
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Side validated: SELL
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Quantity validated: 0.01
+2026-05-28 22:32:16 | DEBUG    | bot.validators | Price validated: 80000.0
+2026-05-28 22:32:16 | DEBUG    | bot.validators | All inputs validated successfully: {'symbol': 'BTCUSDT', 'side': 'SELL', 'order_type': 'LIMIT', 'quantity': 0.01, 'price': 80000.0}
+2026-05-28 22:32:16 | DEBUG    | bot.client | Initialising Binance Futures Testnet client.
+2026-05-28 22:32:32 | INFO     | bot.client | Connected to Binance Futures Testnet. Server time: 1779987748368 ms
+2026-05-28 22:32:32 | INFO     | bot.orders | Placing LIMIT order | symbol=BTCUSDT side=SELL quantity=0.01 price=80000.0
+2026-05-28 22:32:32 | DEBUG    | bot.orders | Request payload: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 80000.0, 'timeInForce': 'GTC'}
+2026-05-28 22:32:32 | DEBUG    | bot.orders | Raw response: {'orderId': 13330103463, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'MX1CjQhjVkz0BxwNsRH3a9', 'price': '80000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1779987752372}
+2026-05-28 22:32:32 | INFO     | bot.orders | LIMIT order placed successfully | orderId=13330103463 status=NEW origQty=0.0100 price=80000.00
+2026-05-28 22:32:32 | INFO     | __main__ | Session completed successfully.
